@@ -1,0 +1,539 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="relative overflow-hidden text-white">
+
+    <!-- BACKGROUND GLOWS -->
+
+    <div class="absolute
+                w-[320px] h-[320px]
+                bg-cyan-400/20
+                blur-[120px]
+                rounded-full
+                -top-20 -left-20">
+    </div>
+
+
+    <div class="absolute
+                w-[350px] h-[350px]
+                bg-violet-500/20
+                blur-[120px]
+                rounded-full
+                bottom-0 right-0">
+    </div>
+
+
+
+    <div class="grid lg:grid-cols-2 gap-10 items-center min-h-screen">
+
+        <!-- LEFT SECTION -->
+
+        <div class="hidden lg:block">
+
+            <span class="inline-block
+                         px-5 py-2
+                         rounded-full
+                         bg-white/10
+                         text-cyan-400
+                         tracking-widest
+                         text-sm">
+
+                AI QUIZ PLATFORM
+
+            </span>
+
+
+
+            <h1 class="mt-6
+                       text-5xl xl:text-7xl
+                       font-black
+                       leading-tight">
+
+                Begin Your
+
+                <span class="block
+                             bg-gradient-to-r
+                             from-cyan-400
+                             via-violet-500
+                             to-pink-500
+                             bg-clip-text
+                             text-transparent">
+
+                    Learning Journey
+
+                </span>
+
+            </h1>
+
+
+
+            <p class="mt-6
+                      text-slate-300
+                      text-lg
+                      leading-relaxed
+                      max-w-2xl">
+
+                Join thousands of learners competing
+                in futuristic AI-powered quizzes
+                and interactive challenges.
+
+            </p>
+
+
+
+            <!-- FEATURES -->
+
+            <div class="space-y-8 mt-12">
+
+                <!-- Feature -->
+
+                <div class="flex gap-5">
+
+                    <div class="w-16 h-16
+                                rounded-[20px]
+                                bg-gradient-to-r
+                                from-cyan-500
+                                to-violet-600
+                                flex items-center
+                                justify-center
+                                text-2xl
+                                shadow-[0_0_25px_rgba(139,92,246,0.5)]">
+
+                        🧠
+
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="text-2xl font-bold">
+
+                            AI Generated Quizzes
+
+                        </h3>
+
+                        <p class="text-slate-300 mt-2">
+
+                            Smart personalized questions.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Feature -->
+
+                <div class="flex gap-5">
+
+                    <div class="w-16 h-16
+                                rounded-[20px]
+                                bg-gradient-to-r
+                                from-cyan-500
+                                to-violet-600
+                                flex items-center
+                                justify-center
+                                text-2xl
+                                shadow-[0_0_25px_rgba(139,92,246,0.5)]">
+
+                        📈
+
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="text-2xl font-bold">
+
+                            Track Progress
+
+                        </h3>
+
+                        <p class="text-slate-300 mt-2">
+
+                            Monitor your performance analytics.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Feature -->
+
+                <div class="flex gap-5">
+
+                    <div class="w-16 h-16
+                                rounded-[20px]
+                                bg-gradient-to-r
+                                from-cyan-500
+                                to-violet-600
+                                flex items-center
+                                justify-center
+                                text-2xl
+                                shadow-[0_0_25px_rgba(139,92,246,0.5)]">
+
+                        🏆
+
+                    </div>
+
+
+                    <div>
+
+                        <h3 class="text-2xl font-bold">
+
+                            Compete & Win
+
+                        </h3>
+
+                        <p class="text-slate-300 mt-2">
+
+                            Climb global leaderboards.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FORM SECTION -->
+
+        <div>
+
+            <div class="relative overflow-hidden
+                        bg-white/5
+                        border border-white/10
+                        backdrop-blur-2xl
+                        rounded-[35px]
+                        p-6 md:p-10
+                        shadow-2xl">
+
+                <!-- Glow -->
+
+                <div class="absolute
+                            w-[250px] h-[250px]
+                            bg-pink-500/20
+                            blur-[120px]
+                            -top-20 -right-20">
+                </div>
+
+
+
+                <!-- LOGO -->
+
+                <div class="relative z-10 text-center">
+
+                    <div class="w-24 h-24
+                                rounded-full
+                                bg-gradient-to-r
+                                from-cyan-500
+                                to-violet-600
+                                flex items-center
+                                justify-center
+                                text-4xl
+                                mx-auto
+                                shadow-[0_0_35px_rgba(139,92,246,0.6)]">
+
+                        👤
+
+                    </div>
+
+
+
+                    <h2 class="mt-6
+                               text-4xl font-black">
+
+                        Create Account
+
+                    </h2>
+
+
+                    <p class="text-slate-300 mt-3">
+
+                        Start your futuristic quiz adventure today.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- ALERTS -->
+
+                {% for message in messages %}
+
+                <div class="mt-5
+                            rounded-[20px]
+                            bg-red-500/10
+                            border border-red-400/20
+                            px-5 py-4
+                            text-red-300">
+
+                    {{ message }}
+
+                </div>
+
+                {% endfor %}
+
+
+
+                <!-- FORM -->
+
+                <form method="POST"
+                      class="relative z-10 mt-8 space-y-6">
+
+                    {% csrf_token %}
+
+
+
+                    <!-- USERNAME -->
+
+                    <div>
+
+                        <label class="block mb-3 text-slate-200">
+
+                            Username
+
+                        </label>
+
+                        <div class="flex items-center gap-4
+                                    bg-white/5
+                                    border border-white/10
+                                    rounded-[20px]
+                                    px-5 py-4
+                                    focus-within:border-cyan-400
+                                    focus-within:shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+
+                            <span class="text-cyan-400 text-xl">
+
+                                👤
+
+                            </span>
+
+                            <input
+                                type="text"
+                                name="username"
+                                required
+                                placeholder="Enter username"
+
+                                class="w-full
+                                       bg-transparent
+                                       outline-none
+                                       text-white
+                                       placeholder:text-slate-400"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div>
+
+                        <label class="block mb-3 text-slate-200">
+
+                            Email Address
+
+                        </label>
+
+                        <div class="flex items-center gap-4
+                                    bg-white/5
+                                    border border-white/10
+                                    rounded-[20px]
+                                    px-5 py-4
+                                    focus-within:border-cyan-400
+                                    focus-within:shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+
+                            <span class="text-cyan-400 text-xl">
+
+                                ✉️
+
+                            </span>
+
+                            <input
+                                type="email"
+                                name="email"
+                                required
+                                placeholder="Enter email"
+
+                                class="w-full
+                                       bg-transparent
+                                       outline-none
+                                       text-white
+                                       placeholder:text-slate-400"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div>
+
+                        <label class="block mb-3 text-slate-200">
+
+                            Password
+
+                        </label>
+
+                        <div class="flex items-center gap-4
+                                    bg-white/5
+                                    border border-white/10
+                                    rounded-[20px]
+                                    px-5 py-4
+                                    focus-within:border-cyan-400
+                                    focus-within:shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+
+                            <span class="text-cyan-400 text-xl">
+
+                                🔒
+
+                            </span>
+
+                            <input
+                                type="password"
+                                name="password"
+                                required
+                                placeholder="Enter password"
+
+                                class="w-full
+                                       bg-transparent
+                                       outline-none
+                                       text-white
+                                       placeholder:text-slate-400"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONFIRM -->
+
+                    <div>
+
+                        <label class="block mb-3 text-slate-200">
+
+                            Confirm Password
+
+                        </label>
+
+                        <div class="flex items-center gap-4
+                                    bg-white/5
+                                    border border-white/10
+                                    rounded-[20px]
+                                    px-5 py-4
+                                    focus-within:border-cyan-400
+                                    focus-within:shadow-[0_0_20px_rgba(56,189,248,0.2)]">
+
+                            <span class="text-cyan-400 text-xl">
+
+                                🛡️
+
+                            </span>
+
+                            <input
+                                type="password"
+                                name="confirm_password"
+                                required
+                                placeholder="Confirm password"
+
+                                class="w-full
+                                       bg-transparent
+                                       outline-none
+                                       text-white
+                                       placeholder:text-slate-400"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TERMS -->
+
+                    <div class="flex items-center gap-3 text-slate-300">
+
+                        <input type="checkbox"
+                               required
+                               class="w-5 h-5 accent-cyan-500">
+
+                        <span>
+
+                            I agree to the Terms & Conditions
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- BUTTON -->
+
+                    <button type="submit"
+
+                            class="w-full
+                                   py-4
+                                   rounded-[20px]
+                                   bg-gradient-to-r
+                                   from-cyan-500
+                                   to-violet-600
+                                   hover:scale-[1.02]
+                                   duration-300
+                                   shadow-lg
+                                   shadow-violet-500/30
+                                   font-semibold
+                                   text-lg">
+
+                        Create Account →
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- LOGIN -->
+
+                <div class="text-center mt-8 text-slate-300">
+
+                    Already have an account?
+
+                    <a href="{% url 'login' %}"
+                       class="text-cyan-400 hover:text-cyan-300">
+
+                        Login here
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,546 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="min-h-screen text-white px-4 md:px-8 py-6">
+
+    <!-- HERO -->
+
+    <div class="relative overflow-hidden rounded-[35px]
+                bg-gradient-to-br from-slate-900 to-slate-800
+                border border-white/10
+                shadow-2xl p-8 md:p-12 mb-10">
+
+        <!-- Glow -->
+        <div class="absolute w-[300px] h-[300px]
+                    bg-cyan-400/20 blur-[120px]
+                    -top-24 -right-24 rounded-full">
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <!-- Left -->
+
+            <div>
+
+                <span class="px-5 py-2 rounded-full
+                             bg-white/10 text-cyan-400
+                             text-sm tracking-widest">
+
+                    PERFORMANCE DASHBOARD
+
+                </span>
+
+                <h1 class="text-4xl md:text-6xl font-black mt-5
+                           bg-gradient-to-r from-cyan-400
+                           via-violet-500 to-pink-500
+                           bg-clip-text text-transparent">
+
+                    Your Quiz Journey
+
+                </h1>
+
+                <p class="text-slate-300 mt-5 text-lg max-w-2xl leading-relaxed">
+
+                    Analyze your quiz performance, monitor your learning growth,
+                    and dominate the leaderboard with futuristic AI analytics.
+
+                </p>
+
+                <div class="flex flex-wrap gap-4 mt-8">
+
+                    <a href="{% url 'home' %}"
+                       class="px-7 py-4 rounded-full
+                              bg-gradient-to-r
+                              from-cyan-500 to-violet-600
+                              hover:scale-105 duration-300
+                              shadow-lg shadow-violet-500/30
+                              font-semibold">
+
+                        🚀 Explore Quizzes
+
+                    </a>
+
+                    <button class="px-7 py-4 rounded-full
+                                   border border-white/20
+                                   hover:bg-white/10 duration-300">
+
+                        📊 Analytics
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Right Orb -->
+
+            <div class="flex justify-center">
+
+                <div class="w-[220px] h-[220px]
+                            rounded-full
+                            bg-gradient-to-br
+                            from-violet-600 to-slate-900
+                            shadow-[0_0_60px_rgba(139,92,246,0.5)]
+                            flex flex-col justify-center items-center
+                            animate-pulse">
+
+                    <h1 class="text-6xl font-black">
+
+                        {{ attempts|length }}
+
+                    </h1>
+
+                    <span class="text-slate-300 tracking-wide">
+
+                        Total Attempts
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    {% if attempts %}
+
+    <!-- STATS -->
+
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+
+        <!-- Card -->
+
+        <div class="bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6
+                    hover:-translate-y-2 duration-300">
+
+            <div class="w-16 h-16 rounded-2xl
+                        bg-cyan-500 flex items-center
+                        justify-center text-2xl mb-5">
+
+                🧠
+
+            </div>
+
+            <h4 class="text-slate-400">Knowledge Level</h4>
+
+            <h1 class="text-3xl font-black mt-2">
+
+                Expert
+
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+
+                Rapid learning detected
+
+            </p>
+
+        </div>
+
+
+        <div class="bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6
+                    hover:-translate-y-2 duration-300">
+
+            <div class="w-16 h-16 rounded-2xl
+                        bg-violet-500 flex items-center
+                        justify-center text-2xl mb-5">
+
+                ⚡
+
+            </div>
+
+            <h4 class="text-slate-400">Best Streak</h4>
+
+            <h1 class="text-3xl font-black mt-2">
+
+                12 Days
+
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+
+                Keep the fire alive
+
+            </p>
+
+        </div>
+
+
+        <div class="bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6
+                    hover:-translate-y-2 duration-300">
+
+            <div class="w-16 h-16 rounded-2xl
+                        bg-emerald-500 flex items-center
+                        justify-center text-2xl mb-5">
+
+                🏆
+
+            </div>
+
+            <h4 class="text-slate-400">Highest Score</h4>
+
+            <h1 class="text-3xl font-black mt-2">
+
+                98%
+
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+
+                Outstanding accuracy
+
+            </p>
+
+        </div>
+
+
+        <div class="bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6
+                    hover:-translate-y-2 duration-300">
+
+            <div class="w-16 h-16 rounded-2xl
+                        bg-pink-500 flex items-center
+                        justify-center text-2xl mb-5">
+
+                ⭐
+
+            </div>
+
+            <h4 class="text-slate-400">Leaderboard</h4>
+
+            <h1 class="text-3xl font-black mt-2">
+
+                #7
+
+            </h1>
+
+            <p class="text-slate-400 mt-2">
+
+                Global ranking
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN -->
+
+    <div class="grid xl:grid-cols-3 gap-6">
+
+        <!-- Chart -->
+
+        <div class="bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6">
+
+            <h2 class="text-2xl font-bold mb-6">
+
+                📈 Score Analytics
+
+            </h2>
+
+            <canvas id="quizChart"></canvas>
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="xl:col-span-2
+                    bg-slate-900/80 backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl p-6 overflow-hidden">
+
+            <div class="flex flex-col md:flex-row
+                        justify-between gap-4 mb-6">
+
+                <h2 class="text-2xl font-bold">
+
+                    🕒 Attempt History
+
+                </h2>
+
+                <input
+                    id="quizSearch"
+                    type="text"
+                    placeholder="Search quiz..."
+                    class="bg-slate-800 border border-white/10
+                           rounded-2xl px-5 py-3
+                           outline-none focus:border-cyan-400
+                           text-white"
+                >
+
+            </div>
+
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead>
+
+                        <tr class="text-slate-400 border-b border-white/10">
+
+                            <th class="text-left py-4">Quiz</th>
+                            <th class="text-left py-4">Score</th>
+                            <th class="text-left py-4">Performance</th>
+                            <th class="text-left py-4">Status</th>
+                            <th class="text-left py-4">Date</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for attempt in attempts %}
+
+                        <tr class="border-b border-white/5
+                                   hover:bg-white/5 duration-300">
+
+                            <td class="py-5 font-semibold">
+
+                                {{ attempt.quiz.title }}
+
+                            </td>
+
+                            <td>
+
+                                <span class="px-4 py-2 rounded-full
+                                             bg-gradient-to-r
+                                             from-cyan-500 to-violet-600
+                                             text-sm font-bold">
+
+                                    {{ attempt.score }}/{{ attempt.total }}
+
+                                </span>
+
+                            </td>
+
+                            <td class="w-[250px]">
+
+                                {% widthratio attempt.score attempt.total 100 as percent %}
+
+                                <div class="w-full h-3 rounded-full bg-slate-700 overflow-hidden">
+
+                                    <div
+                                        class="h-full rounded-full
+                                               bg-gradient-to-r
+                                               from-cyan-400 via-violet-500 to-pink-500"
+                                        style="width: {{ percent }}%">
+                                    </div>
+
+                                </div>
+
+                                <small class="text-slate-400">
+                                    {{ percent }}%
+                                </small>
+
+                            </td>
+
+                            <td>
+
+                                {% if percent >= 80 %}
+
+                                <span class="bg-emerald-500/20
+                                             text-emerald-400
+                                             px-4 py-2 rounded-full text-sm">
+
+                                    Excellent
+
+                                </span>
+
+                                {% elif percent >= 50 %}
+
+                                <span class="bg-yellow-500/20
+                                             text-yellow-400
+                                             px-4 py-2 rounded-full text-sm">
+
+                                    Good
+
+                                </span>
+
+                                {% else %}
+
+                                <span class="bg-red-500/20
+                                             text-red-400
+                                             px-4 py-2 rounded-full text-sm">
+
+                                    Needs Work
+
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td class="text-slate-400">
+
+                                {{ attempt.completed_at|date:"d M Y" }}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    {% else %}
+
+    <!-- EMPTY -->
+
+    <div class="bg-slate-900/80 backdrop-blur-xl
+                border border-white/10
+                rounded-[35px]
+                py-24 px-8 text-center">
+
+        <div class="text-7xl mb-6 animate-bounce">
+
+            🤖
+
+        </div>
+
+        <h1 class="text-5xl font-black
+                   bg-gradient-to-r from-cyan-400
+                   via-violet-500 to-pink-500
+                   bg-clip-text text-transparent">
+
+            No Attempts Found
+
+        </h1>
+
+        <p class="text-slate-400 mt-5 text-lg">
+
+            Complete quizzes to unlock your futuristic AI dashboard.
+
+        </p>
+
+        <a href="{% url 'home' %}"
+           class="inline-block mt-8 px-8 py-4 rounded-full
+                  bg-gradient-to-r from-cyan-500 to-violet-600
+                  hover:scale-105 duration-300">
+
+            Start First Quiz
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+{% if attempts %}
+
+const ctx = document.getElementById('quizChart');
+
+new Chart(ctx, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: [
+            {% for attempt in attempts %}
+                '{{ attempt.quiz.title }}',
+            {% endfor %}
+        ],
+
+        datasets: [{
+            data: [
+                {% for attempt in attempts %}
+                    {{ attempt.score }},
+                {% endfor %}
+            ],
+
+            backgroundColor: [
+                '#06b6d4',
+                '#8b5cf6',
+                '#ec4899',
+                '#10b981',
+                '#f59e0b',
+                '#3b82f6'
+            ],
+
+            borderWidth:0,
+            hoverOffset:15
+        }]
+    },
+
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white',
+                    padding: 20
+                }
+            }
+        }
+    }
+});
+
+{% endif %}
+
+
+// Search
+
+const searchInput = document.getElementById('quizSearch');
+
+if(searchInput){
+
+    searchInput.addEventListener('keyup', function(){
+
+        let filter = this.value.toLowerCase();
+
+        let rows = document.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+
+            let text = row.innerText.toLowerCase();
+
+            row.style.display = text.includes(filter)
+                ? ''
+                : 'none';
+
+        });
+
+    });
+
+}
+
+</script>
+
+{% endblock %}

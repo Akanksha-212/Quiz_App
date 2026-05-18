@@ -1,0 +1,529 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Quiz App</title>
+
+
+    <!-- Tailwind -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        *{
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:
+            linear-gradient(
+                135deg,
+                #020617,
+                #0f172a,
+                #111827
+            );
+        }
+
+
+        /* Scrollbar */
+
+        ::-webkit-scrollbar{
+            width:8px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:#0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:#8b5cf6;
+            border-radius:10px;
+        }
+
+
+        /* Floating Animation */
+
+        @keyframes floatBlob{
+
+            0%,100%{
+                transform:translateY(0px) translateX(0px);
+            }
+
+            50%{
+                transform:translateY(-50px) translateX(40px);
+            }
+
+        }
+
+
+        .blob{
+            animation:floatBlob 16s infinite ease-in-out;
+        }
+
+
+
+        /* Fade */
+
+        @keyframes fadeIn{
+
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        .fade-in{
+            animation:fadeIn 0.8s ease;
+        }
+
+    </style>
+
+</head>
+
+<body class="min-h-screen text-white overflow-x-hidden flex flex-col">
+
+
+
+    <!-- Animated Background -->
+
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+
+        <!-- Blob 1 -->
+
+        <div class="blob absolute
+                    w-[350px] h-[350px]
+                    rounded-full
+                    bg-cyan-400/20
+                    blur-[120px]
+                    -top-24 -left-24">
+        </div>
+
+
+        <!-- Blob 2 -->
+
+        <div class="blob absolute
+                    w-[320px] h-[320px]
+                    rounded-full
+                    bg-violet-500/20
+                    blur-[120px]
+                    -bottom-24 -right-24">
+        </div>
+
+
+        <!-- Blob 3 -->
+
+        <div class="blob absolute
+                    w-[260px] h-[260px]
+                    rounded-full
+                    bg-pink-500/20
+                    blur-[120px]
+                    top-[40%] left-[45%]">
+        </div>
+
+    </div>
+
+
+
+    <!-- LIVE CLOCK -->
+
+    <div id="liveClock"
+
+         class="hidden md:flex
+                fixed top-24 right-5
+                z-50
+                bg-white/10
+                backdrop-blur-xl
+                border border-white/10
+                px-5 py-3
+                rounded-2xl
+                text-cyan-400
+                font-semibold
+                shadow-xl">
+
+    </div>
+
+
+
+    <!-- NAVBAR -->
+
+    <nav class="sticky top-0 z-50
+                border-b border-white/10
+                bg-slate-900/70
+                backdrop-blur-2xl">
+
+        <div class="max-w-7xl mx-auto
+                    px-4 md:px-8">
+
+            <div class="flex items-center
+                        justify-between
+                        py-4">
+
+                <!-- LOGO -->
+
+                <a href="{% url 'home' %}"
+
+                   class="text-2xl md:text-3xl
+                          font-black
+                          bg-gradient-to-r
+                          from-cyan-400
+                          to-violet-500
+                          bg-clip-text
+                          text-transparent">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                    Quiz
+
+                </a>
+
+
+
+                <!-- MOBILE BUTTON -->
+
+                <button id="menuBtn"
+                        class="lg:hidden
+                               text-white text-2xl">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+
+                <!-- DESKTOP MENU -->
+
+                <ul class="hidden lg:flex
+                           items-center gap-6">
+
+                    {% if user.is_authenticated %}
+
+                    <li>
+
+                        <a href="{% url 'my_attempts' %}"
+
+                           class="hover:text-cyan-400
+                                  duration-300
+                                  font-medium">
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+
+                            My Attempts
+
+                        </a>
+
+                    </li>
+
+
+                    <li class="text-slate-300">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        {{ user.username }}
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'logout' %}"
+
+                           class="text-red-400
+                                  hover:text-red-300
+                                  duration-300
+                                  font-medium">
+
+                            <i class="fa-solid fa-right-from-bracket"></i>
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                    {% else %}
+
+                    <li>
+
+                        <a href="{% url 'login' %}"
+
+                           class="hover:text-cyan-400
+                                  duration-300
+                                  font-medium">
+
+                            <i class="fa-solid fa-right-to-bracket"></i>
+
+                            Login
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'register' %}"
+
+                           class="px-6 py-3
+                                  rounded-2xl
+                                  bg-gradient-to-r
+                                  from-cyan-500
+                                  to-violet-600
+                                  hover:scale-105
+                                  duration-300
+                                  shadow-lg
+                                  shadow-violet-500/30
+                                  font-semibold">
+
+                            Register
+
+                        </a>
+
+                    </li>
+
+                    {% endif %}
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- MOBILE MENU -->
+
+            <div id="mobileMenu"
+
+                 class="hidden lg:hidden
+                        pb-5">
+
+                <div class="flex flex-col gap-4">
+
+                    {% if user.is_authenticated %}
+
+                    <a href="{% url 'my_attempts' %}"
+                       class="hover:text-cyan-400">
+
+                        My Attempts
+
+                    </a>
+
+                    <span class="text-slate-300">
+
+                        {{ user.username }}
+
+                    </span>
+
+                    <a href="{% url 'logout' %}"
+                       class="text-red-400">
+
+                        Logout
+
+                    </a>
+
+                    {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="hover:text-cyan-400">
+
+                        Login
+
+                    </a>
+
+                    <a href="{% url 'register' %}"
+
+                       class="px-5 py-3
+                              rounded-2xl
+                              bg-gradient-to-r
+                              from-cyan-500
+                              to-violet-600
+                              text-center
+                              font-semibold">
+
+                        Register
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ALERTS -->
+
+    {% if messages %}
+
+    <div class="max-w-7xl mx-auto
+                w-full
+                px-4 md:px-8
+                mt-5 fade-in">
+
+        {% for message in messages %}
+
+        <div class="mb-4
+                    rounded-2xl
+                    border border-white/10
+                    bg-white/10
+                    backdrop-blur-xl
+                    px-5 py-4
+                    shadow-xl alert-box">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="flex-1
+                 max-w-7xl mx-auto
+                 w-full
+                 px-4 md:px-8
+                 py-8 fade-in">
+
+        <div class="bg-white/5
+                    backdrop-blur-2xl
+                    border border-white/10
+                    rounded-[35px]
+                    p-5 md:p-8
+                    shadow-2xl">
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="border-t border-white/10
+                   bg-slate-900/70
+                   backdrop-blur-xl
+                   py-6 text-center
+                   text-slate-300">
+
+        <p class="text-sm md:text-base">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            2026 AI Quiz Platform |
+            Built with Django & AI
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        // Mobile Menu
+
+        const menuBtn =
+        document.getElementById('menuBtn');
+
+        const mobileMenu =
+        document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click',()=>{
+
+            mobileMenu.classList.toggle('hidden');
+
+        });
+
+
+
+
+        // Auto Hide Alerts
+
+        setTimeout(()=>{
+
+            const alerts =
+            document.querySelectorAll('.alert-box');
+
+            alerts.forEach(alert=>{
+
+                alert.style.transition='0.5s';
+
+                alert.style.opacity='0';
+
+                setTimeout(()=>{
+
+                    alert.remove();
+
+                },500);
+
+            });
+
+        },3000);
+
+
+
+
+        // Live Clock
+
+        function updateClock(){
+
+            const now = new Date();
+
+            document.getElementById(
+                'liveClock'
+            ).innerHTML = now.toLocaleTimeString();
+
+        }
+
+        setInterval(updateClock,1000);
+
+        updateClock();
+
+
+
+    </script>
+
+</body>
+</html>

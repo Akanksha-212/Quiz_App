@@ -1,0 +1,451 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="relative text-white overflow-hidden">
+
+    <!-- BACKGROUND GLOW -->
+
+    <div class="absolute
+                w-[320px] h-[320px]
+                bg-cyan-400/20
+                blur-[120px]
+                rounded-full
+                top-0 left-0">
+    </div>
+
+
+    <div class="absolute
+                w-[350px] h-[350px]
+                bg-violet-500/20
+                blur-[120px]
+                rounded-full
+                bottom-0 right-0">
+    </div>
+
+
+
+    <!-- MAIN CARD -->
+
+    <div class="relative
+                bg-white/5
+                border border-white/10
+                backdrop-blur-2xl
+                rounded-[40px]
+                p-6 md:p-12
+                shadow-2xl
+                overflow-hidden">
+
+        <!-- Glow -->
+
+        <div class="absolute
+                    w-[300px] h-[300px]
+                    bg-pink-500/20
+                    blur-[120px]
+                    -top-24 -right-24">
+        </div>
+
+
+
+        <!-- TROPHY -->
+
+        <div class="flex justify-center">
+
+            <div class="w-[130px] h-[130px]
+                        rounded-full
+                        bg-gradient-to-r
+                        from-yellow-400
+                        via-orange-500
+                        to-pink-500
+                        flex items-center
+                        justify-center
+                        text-6xl
+                        shadow-[0_0_40px_rgba(236,72,153,0.5)]
+                        animate-bounce">
+
+                🏆
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TITLE -->
+
+        <div class="text-center mt-8">
+
+            <span class="inline-block
+                         px-5 py-2
+                         rounded-full
+                         bg-white/10
+                         text-cyan-400
+                         tracking-widest
+                         text-sm">
+
+                QUIZ COMPLETED
+
+            </span>
+
+
+            <h1 class="mt-6
+                       text-4xl md:text-6xl
+                       font-black
+                       bg-gradient-to-r
+                       from-cyan-400
+                       via-violet-500
+                       to-pink-500
+                       bg-clip-text
+                       text-transparent">
+
+                Amazing Work 🎉
+
+            </h1>
+
+
+            <p class="text-slate-300
+                      text-lg
+                      mt-4">
+
+                Your performance summary is ready.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- QUIZ NAME -->
+
+        <div class="flex justify-center mt-8">
+
+            <div class="flex items-center gap-4
+                        bg-white/10
+                        border border-white/10
+                        px-6 py-4
+                        rounded-[24px]
+                        backdrop-blur-xl">
+
+                <span class="text-2xl">
+
+                    📘
+
+                </span>
+
+                <span class="font-semibold text-lg">
+
+                    {{ quiz.title }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SCORE -->
+
+        <div class="flex justify-center mt-12">
+
+            <div class="relative
+                        w-[260px] h-[260px]
+                        rounded-full
+                        bg-gradient-to-r
+                        from-cyan-400
+                        via-violet-500
+                        to-pink-500
+                        p-[10px]
+                        animate-spin
+                        [animation-duration:8s]
+                        shadow-[0_0_40px_rgba(139,92,246,0.5)]">
+
+                <div class="w-full h-full
+                            rounded-full
+                            bg-slate-900
+                            flex flex-col
+                            items-center
+                            justify-center">
+
+                    <h1 class="text-6xl font-black">
+
+                        {{ score }}
+
+                    </h1>
+
+                    <span class="text-slate-300 text-xl">
+
+                        / {{ total_questions }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERFORMANCE -->
+
+        {% widthratio score total_questions 100 as percent %}
+
+        <div class="mt-12 max-w-3xl mx-auto">
+
+            <div class="flex justify-between
+                        text-lg
+                        mb-3">
+
+                <span>
+
+                    Performance
+
+                </span>
+
+                <span class="font-bold">
+
+                    {{ percent }}%
+
+                </span>
+
+            </div>
+
+
+            <!-- Progress -->
+
+            <div class="w-full
+                        h-5
+                        rounded-full
+                        bg-slate-800
+                        overflow-hidden">
+
+                <div
+                    class="h-full rounded-full
+                           bg-gradient-to-r
+                           from-cyan-400
+                           via-violet-500
+                           to-pink-500
+                           shadow-[0_0_20px_rgba(139,92,246,0.6)]"
+
+                    style="width:{{ percent }}%">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MESSAGE -->
+
+        <div class="mt-8 max-w-3xl mx-auto">
+
+            {% if percent >= 90 %}
+
+            <div class="rounded-[24px]
+                        bg-emerald-500/10
+                        border border-emerald-400/20
+                        p-5 text-emerald-400
+                        text-lg flex items-center gap-4">
+
+                🔥 Outstanding! You absolutely dominated this quiz.
+
+            </div>
+
+            {% elif percent >= 70 %}
+
+            <div class="rounded-[24px]
+                        bg-cyan-500/10
+                        border border-cyan-400/20
+                        p-5 text-cyan-400
+                        text-lg flex items-center gap-4">
+
+                ⭐ Great Job! Your understanding is very strong.
+
+            </div>
+
+            {% elif percent >= 50 %}
+
+            <div class="rounded-[24px]
+                        bg-yellow-500/10
+                        border border-yellow-400/20
+                        p-5 text-yellow-400
+                        text-lg flex items-center gap-4">
+
+                💡 Good effort! Keep practicing to improve more.
+
+            </div>
+
+            {% else %}
+
+            <div class="rounded-[24px]
+                        bg-red-500/10
+                        border border-red-400/20
+                        p-5 text-red-400
+                        text-lg flex items-center gap-4">
+
+                📚 Don’t give up. Practice makes perfect.
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- STATS -->
+
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+
+            <!-- Correct -->
+
+            <div class="bg-white/5
+                        border border-white/10
+                        rounded-[28px]
+                        p-8
+                        text-center
+                        hover:-translate-y-2
+                        duration-300">
+
+                <div class="text-5xl mb-5">
+
+                    ✅
+
+                </div>
+
+                <h1 class="text-5xl font-black">
+
+                    {{ score }}
+
+                </h1>
+
+                <p class="text-slate-300 mt-3">
+
+                    Correct Answers
+
+                </p>
+
+            </div>
+
+
+
+            <!-- Wrong -->
+
+            <div class="bg-white/5
+                        border border-white/10
+                        rounded-[28px]
+                        p-8
+                        text-center
+                        hover:-translate-y-2
+                        duration-300">
+
+                <div class="text-5xl mb-5">
+
+                    ❌
+
+                </div>
+
+                <h1 class="text-5xl font-black">
+
+                    {{ total_questions|add:"-"|add:score }}
+
+                </h1>
+
+                <p class="text-slate-300 mt-3">
+
+                    Wrong Answers
+
+                </p>
+
+            </div>
+
+
+
+            <!-- Accuracy -->
+
+            <div class="bg-white/5
+                        border border-white/10
+                        rounded-[28px]
+                        p-8
+                        text-center
+                        hover:-translate-y-2
+                        duration-300">
+
+                <div class="text-5xl mb-5">
+
+                    📈
+
+                </div>
+
+                <h1 class="text-5xl font-black">
+
+                    {{ percent }}%
+
+                </h1>
+
+                <p class="text-slate-300 mt-3">
+
+                    Accuracy
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BUTTONS -->
+
+        <div class="flex flex-wrap
+                    justify-center
+                    gap-5 mt-12">
+
+            <!-- Home -->
+
+            <a href="{% url 'home' %}"
+
+               class="px-8 py-4
+                      rounded-full
+                      bg-gradient-to-r
+                      from-cyan-500
+                      to-violet-600
+                      hover:scale-105
+                      duration-300
+                      shadow-lg
+                      shadow-violet-500/30
+                      font-semibold
+                      text-lg">
+
+                🏠 Back to Home
+
+            </a>
+
+
+
+            <!-- Share -->
+
+            <button
+
+                class="px-8 py-4
+                       rounded-full
+                       bg-white/10
+                       border border-white/10
+                       hover:bg-white/20
+                       duration-300
+                       font-semibold
+                       text-lg">
+
+                🔗 Share Result
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

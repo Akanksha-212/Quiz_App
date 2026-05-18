@@ -1,0 +1,541 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="text-white">
+
+    <!-- HERO -->
+
+    <div class="relative overflow-hidden
+                rounded-[35px]
+                border border-white/10
+                bg-white/5
+                backdrop-blur-2xl
+                p-8 md:p-14
+                shadow-2xl
+                mb-10">
+
+        <!-- Glow -->
+
+        <div class="absolute
+                    w-[350px] h-[350px]
+                    bg-violet-500/20
+                    blur-[120px]
+                    -top-24 -right-24
+                    rounded-full">
+        </div>
+
+
+
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+            <!-- LEFT -->
+
+            <div>
+
+                <span class="inline-block
+                             px-5 py-2
+                             rounded-full
+                             bg-white/10
+                             text-cyan-400
+                             text-sm tracking-widest">
+
+                    ADMIN CONTROL CENTER
+
+                </span>
+
+
+                <h1 class="mt-6
+                           text-4xl md:text-6xl
+                           font-black
+                           leading-tight">
+
+                    Smart Analytics
+
+                    <span class="block
+                                 bg-gradient-to-r
+                                 from-cyan-400
+                                 via-violet-500
+                                 to-pink-500
+                                 bg-clip-text
+                                 text-transparent">
+
+                        Dashboard
+
+                    </span>
+
+                </h1>
+
+
+                <p class="mt-6
+                          text-slate-300
+                          text-lg
+                          max-w-2xl
+                          leading-relaxed">
+
+                    Monitor platform growth,
+                    track quiz performance,
+                    and manage your AI-powered
+                    learning ecosystem.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- RIGHT -->
+
+            <div class="flex justify-center">
+
+                <div class="w-[200px] h-[200px]
+                            rounded-full
+                            bg-gradient-to-br
+                            from-violet-600
+                            to-slate-900
+                            flex items-center
+                            justify-center
+                            text-6xl
+                            shadow-[0_0_60px_rgba(139,92,246,0.6)]
+                            animate-pulse">
+
+                    🛡️
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STATS -->
+
+    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
+
+        <!-- USERS -->
+
+        <div class="bg-cyan-500/10
+                    border border-cyan-400/20
+                    rounded-[30px]
+                    p-8
+                    backdrop-blur-xl
+                    hover:-translate-y-2
+                    duration-300">
+
+            <div class="flex items-center gap-5">
+
+                <div class="w-20 h-20
+                            rounded-[24px]
+                            bg-gradient-to-r
+                            from-cyan-500
+                            to-violet-600
+                            flex items-center
+                            justify-center
+                            text-3xl
+                            shadow-[0_0_30px_rgba(139,92,246,0.5)]">
+
+                    👥
+
+                </div>
+
+
+                <div>
+
+                    <h5 class="text-slate-300">
+
+                        Total Users
+
+                    </h5>
+
+                    <h1 class="text-5xl font-black mt-2">
+
+                        {{ total_users }}
+
+                    </h1>
+
+                    <p class="text-slate-400 mt-2">
+
+                        Registered learners
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUIZZES -->
+
+        <div class="bg-violet-500/10
+                    border border-violet-400/20
+                    rounded-[30px]
+                    p-8
+                    backdrop-blur-xl
+                    hover:-translate-y-2
+                    duration-300">
+
+            <div class="flex items-center gap-5">
+
+                <div class="w-20 h-20
+                            rounded-[24px]
+                            bg-gradient-to-r
+                            from-cyan-500
+                            to-violet-600
+                            flex items-center
+                            justify-center
+                            text-3xl
+                            shadow-[0_0_30px_rgba(139,92,246,0.5)]">
+
+                    📚
+
+                </div>
+
+
+                <div>
+
+                    <h5 class="text-slate-300">
+
+                        Total Quizzes
+
+                    </h5>
+
+                    <h1 class="text-5xl font-black mt-2">
+
+                        {{ total_quizzes }}
+
+                    </h1>
+
+                    <p class="text-slate-400 mt-2">
+
+                        Available quiz sets
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ATTEMPTS -->
+
+        <div class="bg-pink-500/10
+                    border border-pink-400/20
+                    rounded-[30px]
+                    p-8
+                    backdrop-blur-xl
+                    hover:-translate-y-2
+                    duration-300">
+
+            <div class="flex items-center gap-5">
+
+                <div class="w-20 h-20
+                            rounded-[24px]
+                            bg-gradient-to-r
+                            from-cyan-500
+                            to-violet-600
+                            flex items-center
+                            justify-center
+                            text-3xl
+                            shadow-[0_0_30px_rgba(139,92,246,0.5)]">
+
+                    📈
+
+                </div>
+
+
+                <div>
+
+                    <h5 class="text-slate-300">
+
+                        Total Attempts
+
+                    </h5>
+
+                    <h1 class="text-5xl font-black mt-2">
+
+                        {{ total_attempts }}
+
+                    </h1>
+
+                    <p class="text-slate-400 mt-2">
+
+                        Quiz participation count
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ANALYTICS -->
+
+    <div class="grid xl:grid-cols-5 gap-6">
+
+        <!-- CHART -->
+
+        <div class="xl:col-span-2
+                    bg-white/5
+                    border border-white/10
+                    rounded-[30px]
+                    p-8
+                    backdrop-blur-2xl">
+
+            <div class="flex items-center gap-3 mb-8">
+
+                <div class="w-14 h-14
+                            rounded-2xl
+                            bg-gradient-to-r
+                            from-cyan-500
+                            to-violet-600
+                            flex items-center
+                            justify-center
+                            text-2xl">
+
+                    📊
+
+                </div>
+
+                <h2 class="text-3xl font-bold">
+
+                    Platform Analytics
+
+                </h2>
+
+            </div>
+
+
+            <canvas id="dashboardChart"></canvas>
+
+        </div>
+
+
+
+        <!-- TOP QUIZZES -->
+
+        <div class="xl:col-span-3
+                    bg-white/5
+                    border border-white/10
+                    rounded-[30px]
+                    p-8
+                    backdrop-blur-2xl">
+
+            <!-- HEADER -->
+
+            <div class="flex justify-between
+                        items-center
+                        flex-wrap gap-4 mb-8">
+
+                <h2 class="text-3xl font-bold">
+
+                    🔥 Top Attempted Quizzes
+
+                </h2>
+
+
+                <span class="px-5 py-2
+                             rounded-full
+                             bg-white/10
+                             text-cyan-400
+                             font-semibold">
+
+                    TOP 5
+
+                </span>
+
+            </div>
+
+
+
+            <!-- QUIZ LIST -->
+
+            {% for quiz in top_quizzes %}
+
+            <div class="flex flex-col md:flex-row
+                        justify-between
+                        items-start md:items-center
+                        gap-5
+                        rounded-[24px]
+                        bg-white/5
+                        hover:bg-white/10
+                        duration-300
+                        p-6 mb-5">
+
+                <!-- LEFT -->
+
+                <div class="flex items-center gap-5">
+
+                    <!-- Rank -->
+
+                    <div class="w-16 h-16
+                                rounded-[20px]
+                                bg-gradient-to-r
+                                from-cyan-500
+                                to-violet-600
+                                flex items-center
+                                justify-center
+                                text-2xl
+                                font-black
+                                shadow-[0_0_20px_rgba(139,92,246,0.5)]">
+
+                        {{ forloop.counter }}
+
+                    </div>
+
+
+                    <!-- Info -->
+
+                    <div>
+
+                        <h3 class="text-2xl font-bold">
+
+                            {{ quiz.title }}
+
+                        </h3>
+
+                        <p class="text-slate-400 mt-1">
+
+                            Most active quiz
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Attempts -->
+
+                <div>
+
+                    <span class="px-6 py-3
+                                 rounded-full
+                                 bg-gradient-to-r
+                                 from-cyan-500
+                                 to-violet-600
+                                 font-semibold
+                                 shadow-lg
+                                 shadow-violet-500/30">
+
+                        {{ quiz.attempts }} Attempts
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- EMPTY -->
+
+            <div class="text-center py-20">
+
+                <div class="text-7xl mb-6">
+
+                    📉
+
+                </div>
+
+                <h1 class="text-4xl font-black">
+
+                    No Quiz Attempts Yet
+
+                </h1>
+
+                <p class="text-slate-400 mt-5 text-lg">
+
+                    Analytics will appear after users start participating.
+
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- CHART -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx =
+document.getElementById('dashboardChart');
+
+new Chart(ctx, {
+
+    type:'doughnut',
+
+    data:{
+
+        labels:[
+            'Users',
+            'Quizzes',
+            'Attempts'
+        ],
+
+        datasets:[{
+
+            data:[
+                {{ total_users }},
+                {{ total_quizzes }},
+                {{ total_attempts }}
+            ],
+
+            backgroundColor:[
+                '#06b6d4',
+                '#8b5cf6',
+                '#ec4899'
+            ],
+
+            borderWidth:0,
+            hoverOffset:15
+
+        }]
+
+    },
+
+    options:{
+
+        plugins:{
+
+            legend:{
+
+                labels:{
+                    color:'white',
+                    padding:20
+                }
+
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
