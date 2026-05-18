@@ -143,7 +143,7 @@ Step 8 — Start Server
 
 🌐Open in Browser
   bash
-  http://127.0.0.1:8000/
+   http://127.0.0.1:8000/
 
 
 📸 Main Pages
