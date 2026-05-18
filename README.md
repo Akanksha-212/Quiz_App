@@ -72,77 +72,59 @@ quiz_project/
 
 Step 1 — Clone Repository
 
-  bash
   git clone https://github.com/Akanksha-212/modern-ai-quiz-app.git
 
 
 Step 2 — Open Project
 
-  bash
   cd modern-ai-quiz-app
 
 
 Step 3 — Create Virtual Environment
 
-  bash
   python -m venv venv
 
 
 Step 4 — Activate Virtual Environment
 
- #Windows
-
-  bash
+#Windows
   venv\Scripts\activate
 
 
  #Mac/Linux
-
-  bash
   source venv/bin/activate
 
 
 Step 5 — Install Requirements
 
-  bash
   pip install -r requirements.txt
 
 
 Step 6 — Run Migrations
 
-  bash
   python manage.py makemigrations
 
-
-  bash
   python manage.py migrate
 
 
 Step 7 — Load Quiz Categories
 
-  bash
   python manage.py load_ai_quiz Python
 
-
-  bash
   python manage.py load_ai_quiz Java
 
-
-  bash
   python manage.py load_ai_quiz DBMS
 
-
-  bash
   python manage.py load_ai_quiz DSA
 
 
 Step 8 — Start Server
-  bash
+
   python manage.py runserver
 
 
 🌐Open in Browser
-  bash
+
    http://127.0.0.1:8000/
 
 
